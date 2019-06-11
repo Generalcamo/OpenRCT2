@@ -49,6 +49,7 @@ matrix:
               curl -m $CURL_MAX_TIME --connect-timeout $CURL_CONNECT_TIMEOUT -o - -v --form "key=$OPENRCT2_ORG_TOKEN" --form "fileName=OpenRCT2-${OPENRCT2_VERSION}${FILENAME_PART}-linux-x86_64.tar.gz" --form "version=${OPENRCT2_VERSION}" --form "gitHash=$TRAVIS_COMMIT" --form "gitBranch=$PUSH_BRANCH" --form "flavourId=9" --form "file=@openrct2-linux.tar.gz" "https://openrct2.org/altapi/?command=push-build";
               else curl -m $CURL_MAX_TIME --connect-timeout $CURL_CONNECT_TIMEOUT --upload-file openrct2-linux.tar.gz https://transfer.sh/openrct2-linux-x86_64.tar.gz -o link && cat link || if [[ $? ]] ; then echo "Failed transfer.sh upload" ; fi;
               fi
+            - ls -la
         - os: linux
           name: Ubuntu i686 GCC Debug m32 no-build-shared-libs
           if: type != cron
